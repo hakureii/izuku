@@ -22,8 +22,9 @@ jobs:
         run: git clone https://github.com/hakureii/izuku.git
       - name: Run a multi-line script
         run: |
-          cd $(pwd)/izuku
-          timeout $(( 4 * 60 * 60 ))s "main.sh"
+          BOTDIR=$(pwd)/izuku
+          chmod +x $BOTDIR/main.sh
+          timeout $(( 4 * 60 * 60 ))s bash -c "bash ${BOTDIR}/main.sh"
           git add --all
           git config --global user.email "hakurei@asia.com"
           git config --global user.name "hakureii"
