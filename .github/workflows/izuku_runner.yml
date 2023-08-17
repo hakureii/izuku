@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TOKEN: ${{secrets.TOKEN}}
+      GIT: ${{secrets.GIT}}
+      RUNNUM: ${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: GIT clone the main repo !
+        run: git clone https://github.com/hakureii/izuku.git
+      - name: Run a multi-line script
+        run: |
+          cd $(pwd)/izuku
+          bash main.sh
