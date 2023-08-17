@@ -23,4 +23,9 @@ jobs:
       - name: Run a multi-line script
         run: |
           cd $(pwd)/izuku
-          bash main.sh
+          timeout $(( 4 * 60 * 60 ))s bash -c "main.sh"
+          git add --all
+          git config --global user.email "hakurei@asia.com"
+          git config --global user.name "hakureii"
+          git commit -am 'izuku remote sync'
+          git push https://hakureii:${GIT}@github.com/hakureii/izuku.git

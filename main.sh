@@ -19,6 +19,4 @@ izuku () {
 	  done
 }
 pip install -r requirements.txt
-export -f izuku
-timeout $(( 4 * 60 * 60 ))s bash -c izuku
-git_sync
+izuku
