@@ -13,6 +13,7 @@ async def on_ready():
   os.system("clear")
   print(bot.user)
 
+@bot.command()
 async def bye(ctx):
   await ctx.channel.typing()
   os.remove("BOTCONDITION")
