@@ -1,7 +1,7 @@
 import os, sys
 import discord
 import asyncio
-import math
+import calmath
 from discord.ext import commands
 
 
@@ -9,8 +9,9 @@ prefix = "?"
 intents = discord.Intents.all()
 activity = discord.Game(name='')
 bot = commands.Bot(prefix, intents=intents, activity=None, status=None)
-global calc_mode
+global calc_mode, calc_chan
 calc_mode = False
+calc_chan = False
 
 @bot.event
 async def on_ready():
@@ -36,12 +37,13 @@ async def parrot(ctx):
 
 @bot.command()
 async def coocoolator(ctx):
-  global calc_mode
+  global calc_mode, calc_chan
   if calc_mode:
     calc_mode = False
     await ctx.reply("calculator mode off")
   else:
     calc_mode = True
+    calc_chan = ctx.channel
     await ctx.reply("calculator mode on")
 
 @bot.tree.command(name="ping",description="pong pong")
@@ -52,10 +54,11 @@ async def ping(ctx):
 async def on_message(message):
   if message.author == bot.user:
     return
-  global calc_mode
-  if calc_mode:
-    answer = math.culc(message.content)
-    await message.reply(answer)
+  global calc_mode, calc_chan
+  if calc_mode and message.channel == calc_chan:
+    try:
+      answer = calmath.coocoo(message.content)
+      await message.reply(answer)
   await bot.process_commands(message)
 
 bot.run(os.environ["TOKEN"])

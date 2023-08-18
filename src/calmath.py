@@ -19,7 +19,7 @@ def exp(x:int, y:int):
 def fdiv(x:int, y:int):
   return x // y
 
-def culc(instr:str):
+def coocoo(instr:str):
   import re
   operators = ['>', '^', '<', '<=', '>=', '+', '-', '*', '/', '%', '**', '//', '=', '+=', '-=', '==', '*=', '/=', '%=', '//=', '!=', '&=', '|=', '^=', '>>=', '<<=']
   r = re.compile( '|'.join( '(?:{})'.format(re.escape(o)) for o in sorted(operators, reverse=True, key=len)) )  
