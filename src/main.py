@@ -35,14 +35,14 @@ async def parrot(ctx):
   await ctx.channel.send("<a:congaparrot:1142004332502450268>")
 
 @bot.command()
-async def calc(ctx):
+async def coocoolator(ctx):
   global calc_mode
   if calc_mode:
     calc_mode = False
-    await ctx.reply("calculator mode on")
+    await ctx.reply("calculator mode off")
   else:
     calc_mode = True
-    await ctx.reply("calculator mode off")
+    await ctx.reply("calculator mode on")
 
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
@@ -54,7 +54,7 @@ async def on_message(message):
     return
   global calc_mode
   if calc_mode:
-    answer = math.calc(message.content)
+    answer = math.culc(message.content)
     await message.reply(answer)
   await bot.process_commands(message)
 
