@@ -60,7 +60,7 @@ async def on_message(message):
       answer = calmath.coocoo(message.content)
       await message.reply(answer)
     except:
-      return
+      pass
   await bot.process_commands(message)
 
 bot.run(os.environ["TOKEN"])
