@@ -29,6 +29,7 @@ jobs:
           cd $BOTDIR
           chmod +x $BOTDIR/main.sh
           timeout $(( 4 * 60 * 60 ))s bash -c "bash ${BOTDIR}/main.sh"
+          kill $!
           git add --all
           git config --global user.email "hakurei@asia.com"
           git config --global user.name "hakureii"
