@@ -18,10 +18,14 @@ jobs:
       RUNNUM: ${{ github.run_number }}
     steps:
       - name: GIT clone the main repo !
-        run: git clone https://github.com/hakureii/izuku.git
+        run: |
+          rm -rf /home/runner/work/izuku
+          cd /home/runner/work
+          git clone https://github.com/hakureii/izuku.git
       - name: Run a multi-line script
         run: |
-          BOTDIR=$(pwd)/izuku
+          BOTDIR="/home/runner/work/izuku"
+          cd $BOTDIR
           chmod +x $BOTDIR/main.sh
           timeout $(( 4 * 60 * 60 ))s bash -c "bash ${BOTDIR}/main.sh"
           git add --all

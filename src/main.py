@@ -19,4 +19,9 @@ async def bye(ctx):
   os.remove("BOTCONDITION")
   sys.exit(0)
 
+@bot.command()
+async def update(ctx):
+  await ctx.channel.send('booting up....')
+  sys.exit(0)
+
 bot.run(os.environ["TOKEN"])
