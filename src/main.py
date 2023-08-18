@@ -38,10 +38,10 @@ async def parrot(ctx):
 async def calc(ctx):
   global calc_mode
   if calc_mode:
-    calc_mode = True
+    calc_mode = False
     await ctx.reply("calculator mode on")
   else:
-    calc_mode = False
+    calc_mode = True
     await ctx.reply("calculator mode off")
 
 @bot.tree.command(name="ping",description="pong pong")
