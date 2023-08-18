@@ -32,8 +32,12 @@ async def update(ctx):
   sys.exit(0)
 
 @bot.command()
-async def parrot(ctx):
-  await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 ))
+async def parrot(ctx, cols:int=None):
+  if cols:
+    await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 * cols))
+  else:
+    await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 ))
+  await ctx.message.delete()
 
 @bot.command()
 async def coocoolator(ctx):
