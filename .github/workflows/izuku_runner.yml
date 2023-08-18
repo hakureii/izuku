@@ -16,20 +16,21 @@ jobs:
       TOKEN: ${{secrets.TOKEN}}
       GIT: ${{secrets.GIT}}
       RUNNUM: ${{ github.run_number }}
+      REPO: ${{ github.repository }}
     steps:
       - name: GIT clone the main repo !
         run: |
-          rm -rf /home/runner/work/izuku
-          cd /home/runner/work
-          git clone https://github.com/hakureii/izuku.git
+          rm -rf /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}
+          cd /home/runner/work/${{ github.event.repository.name }}
+          git clone https://github.com/${{ github.repository }}.git
       - name: Run a multi-line script
         run: |
-          BOTDIR="/home/runner/work/izuku"
+          BOTDIR="/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}"
           cd $BOTDIR
           chmod +x $BOTDIR/main.sh
           timeout $(( 4 * 60 * 60 ))s bash -c "bash ${BOTDIR}/main.sh"
           git add --all
           git config --global user.email "hakurei@asia.com"
           git config --global user.name "hakureii"
-          git commit -am 'izuku remote sync'
-          git push https://hakureii:${GIT}@github.com/hakureii/izuku.git
+          git commit -am 'remote sync'
+          git push https://hakureii:${GIT}@github.com/${{ github.repository }}.git

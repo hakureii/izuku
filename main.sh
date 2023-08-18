@@ -5,7 +5,7 @@ git_sync () {
 	git config --global user.email "hakurei@asia.com"
 	git config --global user.name "hakureii"
 	git commit -am 'izuku remote sync'
-	git push https://hakureii:${GIT}@github.com/hakureii/izuku.git
+	git push https://hakureii:${GIT}@github.com/${REPO}.git
 }
 
 touch BOTCONDITION
