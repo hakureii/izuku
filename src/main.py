@@ -1,7 +1,7 @@
 import os, sys
 import discord
 import asyncio
-from math import calc
+import math
 from discord.ext import commands
 
 
@@ -53,7 +53,7 @@ async def on_message(message):
   if message.author == bot.user:
     return
   if calc_mode:
-    answer = calc(message.content)
+    answer = math.calc(message.content)
     await message.reply(answer)
 
 
