@@ -56,6 +56,6 @@ async def on_message(message):
   if calc_mode:
     answer = math.calc(message.content)
     await message.reply(answer)
-
+  await bot.process_commands(message)
 
 bot.run(os.environ["TOKEN"])
