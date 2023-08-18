@@ -1,6 +1,7 @@
 import os, sys
 import discord
 import asyncio
+from math import calc
 from discord.ext import commands
 
 
@@ -8,6 +9,8 @@ prefix = "?"
 intents = discord.Intents.all()
 activity = discord.Game(name='')
 bot = commands.Bot(prefix, intents=intents, activity=None, status=None)
+global calc_mode
+calc_mode = False
 
 @bot.event
 async def on_ready():
@@ -27,8 +30,31 @@ async def update(ctx):
   await ctx.channel.send('booting up....')
   sys.exit(0)
 
+@bot.command()
+async def parrot(ctx):
+  await ctx.channel.send("<a:congaparrot:1142004332502450268>")
+
+@bot.command()
+async def calc(ctx):
+  global calc_mode
+  if calc_mode:
+    calc_mode = True
+    await ctx.reply("calculator mode on")
+  else
+    calc_mode = False
+    await ctx.reply("calculator mode off")
+
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
   await ctx.response.pong()
+
+@bot.event
+async def on_message(message):
+  if message.author == bot.user:
+    return
+  if calc_mode:
+    answer = calc(message.content)
+    await message.reply(answer)
+
 
 bot.run(os.environ["TOKEN"])
