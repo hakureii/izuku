@@ -66,7 +66,8 @@ async def on_message(message):
       await message.reply(answer)
     except:
       pass
-  await message.channel.send(random.choice(swear.swear))
+  if all(w in message.content.lower() for w in ["n", "i", "g"]):
+    await message.delete()
   await bot.process_commands(message)
 
 bot.run(os.environ["TOKEN"])
