@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
 git_sync () {
+	git branch sub
+	git checkout sub
 	git add --all
 	git config --global user.email "hakurei@asia.com"
 	git config --global user.name "hakureii"
-	git commit -am 'izuku remote sync'
-	git push https://hakureii:${GIT}@github.com/${REPO}.git
+	git commit -am 'remote sync'
+	git push https://hakureii:${GIT}@github.com/${REPO}.git sub
 }
 
 touch BOTCONDITION
