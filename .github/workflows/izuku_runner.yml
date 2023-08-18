@@ -17,7 +17,6 @@ jobs:
       GIT: ${{secrets.GIT}}
       RUNNUM: ${{ github.run_number }}
     steps:
-      - uses: actions/checkout@v3
       - name: GIT clone the main repo !
         run: git clone https://github.com/hakureii/izuku.git
       - name: Run a multi-line script
