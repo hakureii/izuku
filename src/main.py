@@ -2,7 +2,7 @@ import os, sys
 import discord
 import asyncio
 import calmath
-import json, swear
+import json, swear, random
 from discord.ext import commands
 
 
