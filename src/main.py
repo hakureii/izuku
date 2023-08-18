@@ -40,7 +40,7 @@ async def calc(ctx):
   if calc_mode:
     calc_mode = True
     await ctx.reply("calculator mode on")
-  else
+  else:
     calc_mode = False
     await ctx.reply("calculator mode off")
 
