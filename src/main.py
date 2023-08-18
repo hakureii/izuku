@@ -2,6 +2,7 @@ import os, sys
 import discord
 import asyncio
 import calmath
+import json
 from discord.ext import commands
 
 
@@ -65,6 +66,9 @@ async def on_message(message):
       await message.reply(answer)
     except:
       pass
+  with open("swear.json") as jso:
+    swear = json.load(jso)
+  await message.channel.send(random.choice(swear))
   await bot.process_commands(message)
 
 bot.run(os.environ["TOKEN"])
