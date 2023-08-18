@@ -33,7 +33,7 @@ async def update(ctx):
 
 @bot.command()
 async def parrot(ctx):
-  await ctx.channel.send("<a:congaparrot:1142004332502450268>")
+  await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 ))
 
 @bot.command()
 async def coocoolator(ctx):
