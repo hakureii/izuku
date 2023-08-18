@@ -52,6 +52,7 @@ async def ping(ctx):
 async def on_message(message):
   if message.author == bot.user:
     return
+  global calc_mode
   if calc_mode:
     answer = math.calc(message.content)
     await message.reply(answer)
