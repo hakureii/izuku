@@ -28,7 +28,7 @@ jobs:
           BOTDIR="/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}"
           cd $BOTDIR
           chmod +x $BOTDIR/main.sh
-          timeout $(( 4 * 60 * 60 ))s bash -c "bash ${BOTDIR}/main.sh"
+          timeout $(( 4 * 60 * 60 ))s bash -c "bash ${BOTDIR}/main.sh" || exit
           kill $!
           git add --all
           git config --global user.email "hakurei@asia.com"
