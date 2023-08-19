@@ -45,13 +45,12 @@ async def parrot(ctx, cols:int=None):
 async def waifu(ctx):
   url = 'https://api.waifu.im/search'
   params = {
-      'included_tags': ['maid'],
-      'height': '>=2000'
+      'included_tags': ['maid']
   }
   async with aiohttp.ClientSession() as session:
     async with session.get(url, params=params) as r:
       if r.status == 200:
-        js = await r.json()
+        data = await r.json()
         tags = ""
         for n in range(len(data['images'][0]['tags'])):
           tags += data['images'][0]['tags'][n]['name'] + " "
