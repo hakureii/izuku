@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+# import modules
 import os, sys
 import discord
 import asyncio
@@ -7,21 +10,49 @@ import random, aiohttp
 from discord.ext import commands
 
 
-prefix = "?"
+# setup vars and alias
+prefix = ["?", "izu"]
 intents = discord.Intents.all()
-activity = discord.Game(name='')
-bot = commands.Bot(prefix, intents=intents, activity=None, status=None)
+activity = discord.Game(name='Snake and Ladders')
+bot = commands.Bot(prefix, intents=intents, activity=activity, status=None)
 global calc_mode, calc_chan
 calc_mode = False
 calc_chan = False
 
+
+
+# on ready event [ triggers on bot login ]
 @bot.event
 async def on_ready():
   os.system("clear")
   print(bot.user)
-  await asyncio.sleep(10)
-  await bot.tree.sync()
 
+
+
+# on message event [ triggers when someone sends any message
+@bot.event
+async def on_message(message):
+  await message.channel.typing()
+  if message.channel == discord.utils.get(bot.get_all_channels(), id=1137829767173910538) and message.author != bot.user:
+    await message.delete()
+  if 'gay' in message.content.lower():
+    await message.add_reaction('\U0001f595')
+  if message.author == bot.user:
+    return
+  global calc_mode, calc_chan
+  if calc_mode and message.channel == calc_chan:
+    try:
+      answer = calmath.coocoo(message.content)
+      await message.reply(answer)
+    except:
+      pass
+  if all(w in message.content.lower() for w in ["ni", "a", "gg"]):
+    await message.delete()
+  await bot.process_commands(message)
+
+
+
+# bot commands [ commands works with prefix ]
 @bot.command()
 async def bye(ctx):
   await ctx.channel.typing()
@@ -86,34 +117,12 @@ async def on_command_error(ctx, error):
                           color=0xecce8b)
 	await chan.send(embed=embed)
 
-@bot.event
-async def on_message(message):
-  if message.channel == discord.utils.get(bot.get_all_channels(), id=1137829767173910538):
-    if message.author != bot.user:
-      await message.delete()
-  if 'gay' in message.content.lower():
-    await message.add_reaction('\U0001f595')
-  await bot.process_commands(message)
 
 
+# slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
   await ctx.response.pong()
-
-@bot.event
-async def on_message(message):
-  if message.author == bot.user:
-    return
-  global calc_mode, calc_chan
-  if calc_mode and message.channel == calc_chan:
-    try:
-      answer = calmath.coocoo(message.content)
-      await message.reply(answer)
-    except:
-      pass
-  if all(w in message.content.lower() for w in ["ni", "a", "gg"]):
-    await message.delete()
-  await bot.process_commands(message)
 
 @bot.tree.command(name="emoji", description="send animated emotes without nitro!")
 async def emoji(ctx: discord.Interaction, name:str):
@@ -124,4 +133,7 @@ async def emoji(ctx: discord.Interaction, name:str):
     await webhook.delete()
     await ctx.response.send_message("done.!", ephemeral=True)
 
+
+
+# starting up the bot ....
 bot.run(os.environ["TOKEN"])
