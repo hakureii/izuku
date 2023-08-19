@@ -45,7 +45,8 @@ async def parrot(ctx, cols:int=None):
 async def waifu(ctx):
   url = 'https://api.waifu.im/search'
   params = {
-      'included_tags': ['maid']
+      'included_tags': ['maid'],
+      'height': '>=2000'
   }
   async with aiohttp.ClientSession() as session:
     async with session.get(url, params=params) as r:
