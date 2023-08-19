@@ -2,7 +2,8 @@ import os, sys
 import discord
 import asyncio
 import calmath
-import json, swear, random
+import json, swear
+import random, aiohttp
 from discord.ext import commands
 
 
@@ -39,6 +40,18 @@ async def parrot(ctx, cols:int=None):
   else:
     await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 ))
   await ctx.message.delete()
+
+async def waifu(ctx):
+  url = 'https://api.waifu.im/search'
+  params = {
+      'included_tags': ['maid'],
+      'height': '>=2000'
+  }
+  async with aiohttp.ClientSession() as session:
+    async with session.get(url, params=params) as r:
+      if r.status == 200:
+        js = await r.json()
+        await ctx.channel.send(js['images'][0]['url'])
 
 @bot.command()
 async def coocoolator(ctx):
