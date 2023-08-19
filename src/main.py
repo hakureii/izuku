@@ -88,4 +88,12 @@ async def on_message(message):
     await message.delete()
   await bot.process_commands(message)
 
+@bot.tree.command(name="emoji", description="send animated emotes without nitro!")
+async def emoji(ctx, name:str):
+  webhook = await ctx.channel.create_webhook(name=ctx.author.display_name)
+  await webhook.send(str(name), username=ctx.author.display_name, avatar_url=ctx.author.avatar_url)
+  webhooks = await ctx.channel.webhooks()
+  for webhook in webhooks:
+    await webhook.delete()
+
 bot.run(os.environ["TOKEN"])
