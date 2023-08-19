@@ -41,6 +41,7 @@ async def parrot(ctx, cols:int=None):
     await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 ))
   await ctx.message.delete()
 
+@bot.command()
 async def waifu(ctx):
   url = 'https://api.waifu.im/search'
   params = {
