@@ -34,6 +34,15 @@ async def update(ctx):
   sys.exit(0)
 
 @bot.command()
+async def applist(ctx):
+  await ctx.channel.typing()
+  try:
+    await bot.tree.sync()
+    await ctx.channel.send(content='i think it\'s done !')
+  except:
+    await ctx.channel.send(content='feels like it failed zzZ')
+
+@bot.command()
 async def parrot(ctx, cols:int=None):
   if cols:
     await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * cols))
