@@ -3,10 +3,12 @@
 git_sync () {
 	git branch sub
 	git checkout sub
+	git branch --set-upstream-to=origin/sub
 	git add --all
 	git config --global user.email "hakurei@asia.com"
 	git config --global user.name "hakureii"
 	git commit -am 'remote sync'
+	git merge origin main
 	git push https://hakureii:${GIT}@github.com/${REPO}.git sub
 }
 
