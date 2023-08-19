@@ -86,6 +86,16 @@ async def on_command_error(ctx, error):
                           color=0xecce8b)
 	await chan.send(embed=embed)
 
+@bot.event
+async def on_message(message):
+  if message.channel == discord.utils.get(bot.get_all_channels(), id=1137829767173910538):
+    if message.author != bot.user:
+      await message.delete()
+  if 'gay' in message.content.lower():
+    await message.add_reaction('\U0001f595')
+  await bot.process_commands(message)
+
+
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
   await ctx.response.pong()
