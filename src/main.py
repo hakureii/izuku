@@ -104,5 +104,6 @@ async def emoji(ctx, name:str):
   webhooks = await ctx.channel.webhooks()
   for webhook in webhooks:
     await webhook.delete()
+    await ctx.response.send_message("done.!", ephemeral=True)
 
 bot.run(os.environ["TOKEN"])
