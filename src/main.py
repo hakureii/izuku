@@ -36,7 +36,7 @@ async def update(ctx):
 @bot.command()
 async def parrot(ctx, cols:int=None):
   if cols:
-    await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 * cols))
+    await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * cols))
   else:
     await ctx.channel.send(content=str("<a:congaparrot:1142004332502450268>" * 5 ))
   await ctx.message.delete()
