@@ -78,6 +78,14 @@ async def coocoolator(ctx):
     calc_chan = ctx.channel
     await ctx.reply("calculator mode on")
 
+@bot.event
+async def on_command_error(ctx, error):
+	chan = discord.utils.get(bot.get_all_channels(), id=1137829767173910538)
+	embed = discord.Embed(title=f'{ctx.command}',
+                          description=f'{error}',
+                          color=0xecce8b)
+	await chan.send(embed=embed)
+
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
   await ctx.response.pong()
