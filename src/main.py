@@ -32,7 +32,6 @@ async def on_ready():
 # on message event [ triggers when someone sends any message
 @bot.event
 async def on_message(message):
-  await message.channel.typing()
   if message.channel == discord.utils.get(bot.get_all_channels(), id=1137829767173910538) and message.author != bot.user:
     await message.delete()
   if 'gay' in message.content.lower():
