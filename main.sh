@@ -19,7 +19,7 @@ izuku () {
 	  do
 	  mkdir -p logs
 	  git pull
-	  python3 src/main.py >> logs/$RUNNUM.log
+	  python3 src/main.py
 	  git_sync
 	  done
 }
