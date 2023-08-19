@@ -60,7 +60,7 @@ async def bye(ctx):
 
 @bot.command()
 async def update(ctx):
-  await ctx.channel.send('booting up....')
+  await ctx.channel.send("initializing update and reboot...")
   sys.exit(0)
 
 @bot.command()
