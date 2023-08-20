@@ -87,11 +87,11 @@ async def search(ctx, tgs:str = None):
     return 0
   else:
     res = requests.get(url=f"https://yande.re/post.json?tags={tgs}&limit=1")
-      if res.status == 200:
-        data = res.json()
-        await ctx.channel.send(content=data[0]["file_url"])
-      else:
-        await ctx.channel.send(content="no content found")
+    if res.status == 200:
+      data = res.json()
+      await ctx.channel.send(content=data[0]["file_url"])
+    else:
+      await ctx.channel.send(content="no content found")
 
 @bot.command()
 async def waifu(ctx):
