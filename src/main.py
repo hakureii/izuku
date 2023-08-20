@@ -81,6 +81,18 @@ async def parrot(ctx, cols:int=None):
   await ctx.message.delete()
 
 @bot.command()
+async def search(ctx, tgs:str = None):
+  if tgs == None:
+    return 0
+  async with aiohttp.ClientSession() as session:
+    async with session.get(url=f"https://yande.re/post.json?tags={tgs}&limit=1") as r:
+      if r.status == 200:
+        data = r.json()
+        await ctx.channel.send(content=data[0]["file_url"])
+      else:
+        await ctx.channel.send(content="no content found")
+
+@bot.command()
 async def waifu(ctx):
   url = 'https://api.waifu.im/search'
   params = {
