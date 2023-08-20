@@ -86,7 +86,7 @@ async def search(ctx, tgs:str = None):
   if tgs == None:
     return 0
   else:
-    res = requests.get(url=f"https://yande.re/post.json?tags={tgs}&limit=1")
+    res = requests.get(url=f"https://yande.re/post.json?tags={tgs}")
     if res.status_code == 200:
       data = res.json()
       n = int(random.choice(range(len(data))))
