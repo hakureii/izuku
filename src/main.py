@@ -5,6 +5,7 @@ import os, sys
 import discord
 import asyncio
 import calmath
+import requests
 import json, swear
 import random, aiohttp
 from discord.ext import commands
@@ -85,9 +86,9 @@ async def search(ctx, tgs:str = None):
   if tgs == None:
     return 0
   else:
-    r = requests.get(url=f"https://yande.re/post.json?tags={tgs}&limit=1")
-      if r.status == 200:
-        data = r.json()
+    res = requests.get(url=f"https://yande.re/post.json?tags={tgs}&limit=1")
+      if res.status == 200:
+        data = res.json()
         await ctx.channel.send(content=data[0]["file_url"])
       else:
         await ctx.channel.send(content="no content found")
