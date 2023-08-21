@@ -95,6 +95,23 @@ async def search(ctx, tgs:str = None):
       await ctx.channel.send(content="no content found")
 
 @bot.command()
+async def hunt(ctx, category:str = None):
+  cat_list = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
+  if category:
+    if category in cat_list:
+      req = requests.get(url=f"https://api.waifu.pics/sfw/{category}").json()
+      await ctx.channel.send(content=req["url"])
+    else:
+      helper = ""
+      for cat in cat_list:
+        helper += cat + " "
+      await ctx.channel.send(content=helper)
+  else:
+    category = random.choice(cat_list)
+    req = requests.get(url=f"https://api.waifu.pics/sfw/{category}").json()
+    await ctx.channel.send(content=req["url"])
+
+@bot.command()
 async def waifu(ctx):
   url = 'https://api.waifu.im/search'
   params = {
