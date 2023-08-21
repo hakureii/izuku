@@ -107,7 +107,7 @@ async def hunt(ctx, category:str = None):
       for cat in cat_list:
         helper += cat + " "
         n += 1
-        if (n % 3) == 0:
+        if (n % 5) == 0:
           helper += "\n"
       await ctx.channel.send(content=f"```{helper}```")
   else:
