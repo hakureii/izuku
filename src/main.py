@@ -12,7 +12,7 @@ from discord.ext import commands
 
 
 # setup vars and alias
-prefix = ["?", "izu"]
+prefix = ["?", "izu "]
 intents = discord.Intents.all()
 activity = discord.Game(name='Snake and Ladders')
 bot = commands.Bot(prefix, intents=intents, activity=activity, status=None)
@@ -151,6 +151,9 @@ async def on_command_error(ctx, error):
                           color=0xecce8b)
 	await chan.send(embed=embed)
 
+@bot.command()
+async def debug(ctx):
+  await ctx.channel.send(ctx)
 
 
 # slash commands aka application commands
