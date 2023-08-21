@@ -103,9 +103,12 @@ async def hunt(ctx, category:str = None):
       await ctx.channel.send(content=req["url"])
     else:
       helper = ""
+      n = 0
       for cat in cat_list:
         helper += cat + " "
-      await ctx.channel.send(content=helper)
+        if (n % 3) == 0:
+          helper += "\n"
+      await ctx.channel.send(content=f"```{helper}```")
   else:
     category = random.choice(cat_list)
     req = requests.get(url=f"https://api.waifu.pics/sfw/{category}").json()
