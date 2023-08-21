@@ -157,6 +157,14 @@ async def debug(ctx):
   for channel in guild.text_channels:
      await ctx.channel.send(channel)
 
+@bot.command()
+async def progayming(ctx, ans:str = None):
+  if ans:
+    if ans == 25:
+      await ctx.channel.send("you answered correctly..")
+  else:
+    await ctx.channel.send("what is ```py\ndef main():\n  return 5 * 5\n```\n?????")
+
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
