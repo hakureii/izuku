@@ -153,7 +153,7 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def debug(ctx):
-  await ctx.channel.send(ctx)
+  await ctx.channel.send(ctx())
 
 
 # slash commands aka application commands
