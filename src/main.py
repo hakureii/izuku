@@ -39,6 +39,7 @@ async def on_ready():
 async def on_message(message):
   if message.channel == discord.utils.get(bot.get_all_channels(), id=1137829767173910538) and message.author != bot.user:
     await message.delete()
+  global amogus_q_chan, amogus_q_ans
   if amogus_q_chan == message.channel and message.author != bot.user:
     if str(amogus_q_ans) == message.content:
       await message.reply("you got xxx points")
