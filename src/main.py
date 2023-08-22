@@ -84,6 +84,8 @@ async def parrot(ctx, cols:int=None):
 
 @bot.command()
 async def search(ctx, tgs:str = None):
+  if ctx.channel.is_nsfw() != True:
+    return
   if tgs == None:
     return 0
   else:
@@ -97,6 +99,8 @@ async def search(ctx, tgs:str = None):
 
 @bot.command()
 async def hunt(ctx, category:str = None):
+  if ctx.channel.is_nsfw() != True:
+    return
   cat_list = ["waifu", "neko", "shinobu", "megumin", "bully", "cuddle", "cry", "hug", "awoo", "kiss", "lick", "pat", "smug", "bonk", "yeet", "blush", "smile", "wave", "highfive", "handhold", "nom", "bite", "glomp", "slap", "kill", "kick", "happy", "wink", "poke", "dance", "cringe"]
   if category:
     if category in cat_list:
@@ -118,6 +122,9 @@ async def hunt(ctx, category:str = None):
 
 @bot.command()
 async def waifu(ctx):
+  # nsfw check
+  if ctx.channel.is_nsfw() != True:
+    return
   url = 'https://api.waifu.im/search'
   params = {
       'included_tags': ['maid']
