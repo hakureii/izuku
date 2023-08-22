@@ -8,4 +8,4 @@ def meth_quests():
   mafs = f"{num1} {oper} {num2}"
   result = eval(mafs)
 
-  return result, f"**amogus quest:\nSolve the mathsfs problem: {mafs} = ?"
+  return result, f"**amogus quest:**\nSolve the mathsfs problem: {mafs} = ?"
