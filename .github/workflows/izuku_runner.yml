@@ -16,6 +16,7 @@ jobs:
     env:
       TOKEN: ${{secrets.TOKEN}}
       GIT: ${{secrets.GIT}}
+      WAIFUIM: ${{secrets.WAIFUIM}}
       RUNNUM: ${{ github.run_number }}
       REPO: ${{ github.repository }}
     steps:
