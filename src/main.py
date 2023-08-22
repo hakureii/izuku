@@ -167,7 +167,7 @@ async def on_command_error(ctx, error):
 async def debug(ctx):
   guild = ctx.message.guild
   deturn = ""
-  for channel_id in amogus_chan:
+  for channel_id in amogus_chans:
     deturn += f"```{discord.utils.get(bot.get_all_channels(), id=channel_id)}\n```"
   await ctx.channel.send(content=deturn)
 
