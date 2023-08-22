@@ -19,7 +19,8 @@ activity = discord.Game(name='Snake and Ladders')
 bot = commands.Bot(prefix, intents=intents, activity=activity, status=None)
 amogus_chans = ["1143498377317851298", "1141081035505938472", "1138223071384317962", "1134599357577044138", "1135301538609381377"]
 global calc_mode, calc_chan, amogus_q_ans
-global amogus_q_chan
+global amogus_q_chan, amogus_existing_que
+amogus_existing_que = None
 amogus_q_chan = None
 amogus_q_ans = None
 calc_mode = False
@@ -43,6 +44,8 @@ async def on_message(message):
   if amogus_q_chan == message.channel and message.author != bot.user:
     if str(amogus_q_ans) == message.content:
       await message.reply("you got xxx points")
+      global amogus_existing_que
+      amogus_existing_que = None
       amogus_q_ans = None
   if 'gay' in message.content.lower():
     await message.add_reaction('\U0001f595')
@@ -179,7 +182,10 @@ async def debug(ctx):
   channel_id = random.choice(amogus_chans)
   amogus_q_chan = discord.utils.get(bot.get_all_channels(), id=int(channel_id))
   amogus_q_ans, quest = meth_quests()
-  await amogus_q_chan.send(content=quest)
+  global amogus_existing_que
+  if amogus_existing_que:
+    await amogus_existing_que.edit(content"**amogus quest:**\nexpired!")
+  amogus_existing_que = await amogus_q_chan.send(content=quest)
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
