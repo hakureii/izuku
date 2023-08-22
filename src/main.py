@@ -176,7 +176,7 @@ async def debug(ctx):
   channel_id = random.choice(amogus_chans)
   amogus_q_chan = discord.utils.get(bot.get_all_channels(), id=int(channel_id))
   amogus_q_ans, quest = meth_quests()
-  await deturn.send(content=quest)
+  await amogus_q_chan.send(content=quest)
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
