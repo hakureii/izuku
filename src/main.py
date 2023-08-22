@@ -184,7 +184,7 @@ async def debug(ctx):
   amogus_q_ans, quest = meth_quests()
   global amogus_existing_que
   if amogus_existing_que:
-    await amogus_existing_que.edit(content"**amogus quest:**\nexpired!")
+    await amogus_existing_que.edit(content="**amogus quest:**\nexpired!")
   amogus_existing_que = await amogus_q_chan.send(content=quest)
 
 # slash commands aka application commands
