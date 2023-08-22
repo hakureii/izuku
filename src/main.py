@@ -83,6 +83,7 @@ async def parrot(ctx, cols:int=None):
   await ctx.message.delete()
 
 @bot.command()
+@commands.is_nsfw()
 async def search(ctx, tgs:str = None):
   if ctx.channel.is_nsfw() != True:
     return
@@ -98,6 +99,7 @@ async def search(ctx, tgs:str = None):
       await ctx.channel.send(content="no content found")
 
 @bot.command()
+@commands.is_nsfw()
 async def hunt(ctx, category:str = None):
   if ctx.channel.is_nsfw() != True:
     return
@@ -121,6 +123,7 @@ async def hunt(ctx, category:str = None):
     await ctx.channel.send(content=req["url"])
 
 @bot.command()
+@commands.is_nsfw()
 async def waifu(ctx):
   # nsfw check
   if ctx.channel.is_nsfw() != True:
