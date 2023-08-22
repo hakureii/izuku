@@ -168,7 +168,7 @@ async def debug(ctx):
   guild = ctx.message.guild
   deturn = ""
   for channel_id in amogus_chans:
-    deturn += f"```{channel_id}\n```"
+    deturn += channel_id} + " "
   await ctx.channel.send(content=deturn)
 
 # slash commands aka application commands
