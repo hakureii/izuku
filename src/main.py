@@ -135,10 +135,11 @@ async def hunt(ctx, category:str = None):
 async def waifu(ctx, *args):
   await ctx.reply(args)
   default_tags = ["maid", "waifu", "marin-kitagawa", "mori-calliope", "raiden-shogun", "oppai", "selfies", "uniform"]
-  tags = []
-  tags.append(random.choice(default_tags))
   for tag in args:
     tags.append(tag)
+  if args != ():
+    tags = []
+    tags.append(random.choice(default_tags))
   url = 'https://api.waifu.im/search'
   params = {
       'included_tags': tags,
