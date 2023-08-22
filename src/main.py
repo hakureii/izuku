@@ -16,6 +16,7 @@ prefix = ["?", "izu "]
 intents = discord.Intents.all()
 activity = discord.Game(name='Snake and Ladders')
 bot = commands.Bot(prefix, intents=intents, activity=activity, status=None)
+amogus_chans = ["1143498377317851298", "1141081035505938472", "1138223071384317962", "1134599357577044138", "1135301538609381377"]
 global calc_mode, calc_chan
 calc_mode = False
 calc_chan = False
@@ -166,8 +167,8 @@ async def on_command_error(ctx, error):
 async def debug(ctx):
   guild = ctx.message.guild
   deturn = ""
-  for channel in guild.text_channels:
-    deturn += f"```{channel}: {channel.id}\n```"
+  for channel_id in amogus_chan:
+    deturn += f"```{discord.utils.get(bot.get_all_channels(), id=channel_id)}\n```"
   await ctx.channel.send(content=deturn)
 
 # slash commands aka application commands
