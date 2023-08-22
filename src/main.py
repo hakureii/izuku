@@ -135,6 +135,7 @@ async def hunt(ctx, category:str = None):
 async def waifu(ctx, *args):
   await ctx.reply(args)
   default_tags = ["maid", "waifu", "marin-kitagawa", "mori-calliope", "raiden-shogun", "oppai", "selfies", "uniform"]
+  tags = []
   for tag in args:
     tags.append(tag)
   if args != ():
