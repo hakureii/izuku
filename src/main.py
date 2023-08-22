@@ -165,8 +165,10 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def debug(ctx):
   guild = ctx.message.guild
+  deturn = ""
   for channel in guild.text_channels:
-     await ctx.channel.send(content=f"```{channel}: {channel.id}\n```")
+    deturn += f"```{channel}: {channel.id}\n```"
+  await ctx.channel.send(content=deturn)
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
