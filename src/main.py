@@ -166,12 +166,12 @@ async def on_command_error(ctx, error):
 async def debug(ctx):
   guild = ctx.message.guild
   for channel in guild.text_channels:
-     await ctx.channel.send(channel.id)
+     await ctx.channel.send(content=f"```{channel}: {channel.id}\n```")
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
-  await ctx.response.pong()
+  await ctx.resonse.send("done.!", ephemeral=True)
 
 @bot.tree.command(name="emoji", description="send animated emotes without nitro!")
 async def emoji(ctx: discord.Interaction, name:str):
