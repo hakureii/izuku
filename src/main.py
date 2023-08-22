@@ -42,6 +42,7 @@ async def on_message(message):
   if amogus_q_chan == message.channel and message.author != bot.user:
     if str(amogus_q_ans) == message.content:
       await message.reply("you got xxx points")
+      amogus_q_ans = None
   if 'gay' in message.content.lower():
     await message.add_reaction('\U0001f595')
   if message.author == bot.user:
