@@ -137,7 +137,7 @@ async def waifu(ctx, *args):
   tags = []
   for tag in args:
     tags.append(tag)
-  if len(args) = 0:
+  if len(args) == 0:
     tags = []
     tags.append(random.choice(default_tags))
   url = 'https://api.waifu.im/search'
