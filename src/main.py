@@ -118,7 +118,7 @@ async def hunt(ctx, category:str = None):
       await ctx.channel.send(content=req["url"])
     else:
       helper = ""
-      n = 0
+      n == 0
       for cat in cat_list:
         helper += cat + " "
         n += 1
