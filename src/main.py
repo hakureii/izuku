@@ -137,7 +137,9 @@ async def hunt(ctx, category:str = None):
 @bot.command()
 @commands.is_nsfw()
 async def waifu(ctx, *args):
-  tags = ['waifu']
+  default_tags = ["maid", "waifu", "marin-kitagawa", "mori-calliope", "raiden-shogun", "oppai", "selfies", "uniform"]
+  tags = []
+  tags.append(random.choice(default_tags))
   for tag in args:
     tags.append(tag)
   url = 'https://api.waifu.im/search'
