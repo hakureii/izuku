@@ -168,13 +168,13 @@ async def debug(ctx):
   guild = ctx.message.guild
   deturn = ""
   for channel_id in amogus_chans:
-    deturn += channel_id + " "
+    deturn += str(discord.utils.get(bot.get_all_channels(), id=channel_id)) + " "
   await ctx.channel.send(content=deturn)
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
-  await ctx.resonse.send("done.!", ephemeral=True)
+  await ctx.response.send_message("pong.!", ephemeral=True)
 
 @bot.tree.command(name="emoji", description="send animated emotes without nitro!")
 async def emoji(ctx: discord.Interaction, name:str):
