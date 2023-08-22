@@ -137,10 +137,12 @@ async def hunt(ctx, category:str = None):
 @bot.command()
 @commands.is_nsfw()
 async def waifu(ctx, *args):
-  await ctx.reply(args)
+  tags = ['waifu']
+  for tag in args:
+    tags.append(tag)
   url = 'https://api.waifu.im/search'
   params = {
-      'included_tags': ['maid']
+      'included_tags': tags
   }
   async with aiohttp.ClientSession() as session:
     async with session.get(url, params=params) as r:
