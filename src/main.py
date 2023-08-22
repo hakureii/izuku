@@ -6,6 +6,7 @@ import discord
 import asyncio
 import calmath
 import requests
+from co_funs import *
 import json, swear
 import random, aiohttp
 from discord.ext import commands
@@ -17,10 +18,12 @@ intents = discord.Intents.all()
 activity = discord.Game(name='Snake and Ladders')
 bot = commands.Bot(prefix, intents=intents, activity=activity, status=None)
 amogus_chans = ["1143498377317851298", "1141081035505938472", "1138223071384317962", "1134599357577044138", "1135301538609381377"]
-global calc_mode, calc_chan
+global calc_mode, calc_chan, amogus_q_ans
+global amogus_q_chan
+amogus_q_chan = None
+amogus_q_ans = None
 calc_mode = False
 calc_chan = False
-
 
 
 # on ready event [ triggers on bot login ]
@@ -36,6 +39,8 @@ async def on_ready():
 async def on_message(message):
   if message.channel == discord.utils.get(bot.get_all_channels(), id=1137829767173910538) and message.author != bot.user:
     await message.delete()
+  if amogus_q_chan == message.channel and amogus_q_ans == message.channel.content:
+    await message.reply("you got .. points in amogus game!")
   if 'gay' in message.content.lower():
     await message.add_reaction('\U0001f595')
   if message.author == bot.user:
@@ -165,11 +170,13 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def debug(ctx):
+  global amogus_q_chan, amogus_q_ans
   guild = ctx.message.guild
   deturn = ""
-  for channel_id in amogus_chans:
-    deturn = discord.utils.get(bot.get_all_channels(), id=int(channel_id))
-    await deturn.send(content='test')
+  channel_id = random.choice(amogus_chans)
+  amogus_q_chan = discord.utils.get(bot.get_all_channels(), id=int(channel_id))
+  amogus_q_ans, quest = meth_quests()
+  await deturn.send(content=quest)
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
