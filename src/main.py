@@ -39,7 +39,7 @@ async def on_ready():
 async def on_message(message):
   if message.channel == discord.utils.get(bot.get_all_channels(), id=1137829767173910538) and message.author != bot.user:
     await message.delete()
-  if amogus_q_chan == message.channel and amogus_q_ans == message.channel.content:
+  if amogus_q_chan == message.channel and amogus_q_ans == message.content:
     await message.reply("you got .. points in amogus game!")
   if 'gay' in message.content.lower():
     await message.add_reaction('\U0001f595')
