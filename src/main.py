@@ -133,7 +133,7 @@ async def hunt(ctx, category:str = None):
 @bot.command()
 @commands.is_nsfw()
 async def waifu(ctx, *args):
-  await ctx.reply(args)
+  await ctx.reply(len(args))
   default_tags = ["maid", "waifu", "marin-kitagawa", "mori-calliope", "raiden-shogun", "oppai", "selfies", "uniform"]
   tags = []
   for tag in args:
