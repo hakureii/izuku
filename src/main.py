@@ -54,6 +54,7 @@ async def on_message(message):
 
 # bot commands [ commands works with prefix ]
 @bot.command()
+@commands.is_owner()
 async def bye(ctx):
   await ctx.channel.typing()
   os.remove("BOTCONDITION")
