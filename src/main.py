@@ -136,7 +136,7 @@ async def hunt(ctx, category:str = None):
 
 @bot.command()
 @commands.is_nsfw()
-async def waifu(ctx, *args:str = None):
+async def waifu(ctx, *args):
   await ctx.reply(args)
   url = 'https://api.waifu.im/search'
   params = {
