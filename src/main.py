@@ -143,7 +143,7 @@ async def waifu(ctx, *args):
   url = 'https://api.waifu.im/search'
   params = {
       'included_tags': tags,
-      'Authorization': os.environ["WAIFUIM"]
+      'Authorization': f'Bearer {os.environ["WAIFUIM"]}'
   }
   async with aiohttp.ClientSession() as session:
     async with session.get(url, params=params) as r:
