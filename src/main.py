@@ -188,6 +188,10 @@ async def debug(ctx):
     await amogus_existing_que.edit(content="**amogus quest:**\nexpired!")
   amogus_existing_que = await amogus_q_chan.send(content=quest)
 
+@bot.command()
+async def goomy(ctx):
+  await ctx.reply(discord.ui.View())
+
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
 async def ping(ctx):
