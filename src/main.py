@@ -190,7 +190,7 @@ async def debug(ctx):
 
 @bot.command()
 async def goomy(ctx):
-  await ctx.reply(discord.ui.View())
+  await ctx.reply(discord.ui.View(timeout=10))
 
 # slash commands aka application commands
 @bot.tree.command(name="ping",description="pong pong")
