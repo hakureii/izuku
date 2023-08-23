@@ -62,9 +62,16 @@ async def on_message(message):
     await message.delete()
   await bot.process_commands(message)
 
-
-
+global tunee
+tunee = 0
 # bot commands [ commands works with prefix ]
+@bot.command(description="test command for bee!")
+async def turns(ctx):
+  global tunee
+  if tunee % 4 == 0:
+    tunee = 0
+  await ctx.reply(tunee)
+
 @bot.command()
 @commands.is_owner()
 async def bye(ctx):
