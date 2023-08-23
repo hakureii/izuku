@@ -58,8 +58,6 @@ async def on_message(message):
       await message.reply(answer)
     except:
       pass
-  if all(w in message.content.lower() for w in ["ni", "a", "gg"]):
-    await message.delete()
   await bot.process_commands(message)
 
 global tunee
