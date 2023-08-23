@@ -70,6 +70,7 @@ async def turns(ctx):
   global tunee
   if tunee % 4 == 0:
     tunee = 0
+  tunee += 1
   await ctx.reply(tunee)
 
 @bot.command()
