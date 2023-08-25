@@ -9,6 +9,8 @@ import requests
 from co_funs import *
 import json, swear
 import random, aiohttp
+import contextlib
+from io import StringIO
 from discord.ext import commands
 
 
@@ -25,6 +27,8 @@ amogus_q_chan = None
 amogus_q_ans = None
 calc_mode = False
 calc_chan = False
+global pymode
+pymode = False
 
 
 # on ready event [ triggers on bot login ]
@@ -49,6 +53,21 @@ async def on_message(message):
       amogus_q_ans = None
   if 'gay' in message.content.lower():
     await message.add_reaction('\U0001f595')
+  if pymode:
+    @contextlib.contextmanager
+    def stdoutIO(stdout=None):
+        old = sys.stdout
+        if stdout is None:
+            stdout = StringIO()
+        sys.stdout = stdout
+        yield stdout
+        sys.stdout = old
+    with stdoutIO() as s:
+        try:
+            exec(str(message.content))
+        except:
+            await message.reply("Something wrong with the code")
+    await message.reply(s.getvalue())
   if message.author == bot.user:
     return
   global calc_mode, calc_chan
@@ -199,6 +218,16 @@ async def goomy(ctx):
   await ctx.reply(discord.ui.View(timeout=10))
 
 # slash commands aka application commands
+@bot.tree.command(name="python", description="convers the channel into a  python interpreter")
+async def pycode(ctx):
+  global pymode
+  if pymode:
+    await ctx.response.send_message("python mode off")
+    pymode = False
+  else:
+    await ctx.response.send_message("python mode on")
+    pymode = True
+
 @bot.tree.command(name="data",description="remote db over discord bot")
 async def data(ctx, key: str, value: str = None):
   with open("data.json", "r") as file:
