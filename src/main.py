@@ -54,6 +54,8 @@ async def on_message(message):
   if 'gay' in message.content.lower():
     await message.add_reaction('\U0001f595')
   if pymode:
+    if message.author == bot.user:
+      return
     @contextlib.contextmanager
     def stdoutIO(stdout=None):
         old = sys.stdout
