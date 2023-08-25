@@ -199,9 +199,17 @@ async def goomy(ctx):
   await ctx.reply(discord.ui.View(timeout=10))
 
 # slash commands aka application commands
-@bot.tree.command(name="ping",description="pong pong")
-async def ping(ctx):
-  await ctx.response.send_message("pong.!", ephemeral=True)
+@bot.tree.command(name="data",description="remote db over discord bot")
+async def data(ctx, key: str, value: str = None):
+  with open("data.json", "r") as file:
+    db = json.load(file)
+  if value:
+    db[key] = value
+    with open("data.json", "w") as file:
+      json.dump(db, file)
+  else:
+    await ctx.response.send_message(db[key])
+  
 
 @bot.tree.command(name="emoji", description="send animated emotes without nitro!")
 async def emoji(ctx: discord.Interaction, name:str):
